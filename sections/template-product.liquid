@@ -24,9 +24,11 @@
     </div>
     <div class="gallery-nav">
       {% for image in product.images %}
+        {% if image.alt == featured_image.alt %}
         <div class="mr-5">
           <img src="{{ image |  image_url: width: "20px" }}" alt="">
         </div>
+        {% endif %}
       {% endfor %}
     </div>
   </div>
@@ -45,13 +47,19 @@
 
               {% if product.variants.size > 1 %}
                 <div class="product-options" data-url="{{ product.url }}">
-                  {% for option in product.options_with_values %}
+                {% assign numOfSeats = nill %}
+                  {% for opt in current_variant.options %}
+                    {% if opt contains "seats" %}
+                      {% assign numOfSeats = opt %}
+                    {% endif %}
+                  {% endfor %}
+                {% for option in product.options_with_values %}
                     <fieldset>
                       <legend>
-                        {{ option.name }}
                       </legend>
                       <div class="values">
-                        {% for value in option.values %}
+                        {% if option.name != "Configuration" %}
+                          {% for value in option.values %}
                           {% assign imageUrl = option.name | handleize | append: '-' | append: value | downcase %}
 
                           <label class="value__wrapper">
@@ -65,7 +73,24 @@
                               value="{{ value }}"
                             >
                           </label>
-                        {% endfor %}
+                          {% endfor %}
+                        {% else %}
+                          {% for value in option.values %}
+                          {% assign imageUrl = option.name | handleize | append: '-' | append: value |  append: '-' |  append: numOfSeats | downcase %}
+                          
+                          <label class="value__wrapper">
+                            <img src="../assets/{{ imageUrl }}.svg" alt="">
+                            <input
+                              {% if option.selected_value == value %}
+                                checked
+                              {% endif %}
+                              type="radio"
+                              name="{{ option.name }}"
+                              value="{{ value }}"
+                            >
+                          </label>
+                          {% endfor %}
+                        {% endif %}
                       </div>
                     </fieldset>
                   {% endfor %}
