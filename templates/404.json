@@ -1,0 +1,10 @@
+{
+    "name": "404 page",
+    "layout": "without-header",
+    "sections": {
+        "template": {
+            "type": "template-404"
+        }
+    },
+    "order": ["template"]
+}
