@@ -1025,6 +1025,11 @@ summary::-webkit-details-marker {
     max-width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 
+  .grid__item.grid-2-col {
+    width: calc(65.81% - var(--grid-desktop-horizontal-spacing) / 2);
+    max-width: calc(65.81% - var(--grid-desktop-horizontal-spacing) / 2);
+  }
+
   .slider.slider--desktop .scroll-trigger.animate--slide-in {
     animation: none;
     opacity: 1;
@@ -1111,6 +1116,11 @@ summary::-webkit-details-marker {
 
   .grid--1-col-tablet-down.grid--peek .grid__item {
     width: calc(100% - var(--grid-desktop-horizontal-spacing) - 3rem);
+  }
+
+  .grid__item.grid-2-col {
+    width: 100%;
+    max-width: 100%;
   }
 }
 

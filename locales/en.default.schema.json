@@ -2543,6 +2543,17 @@
               "label": "Link"
             }
           }
+        },
+        "image": {
+          "name": "Image",
+          "settings": {
+            "image": {
+              "label": "Image"
+            },
+            "text": {
+              "label": "Description"
+            }
+          }
         }
       },
       "presets": {
